@@ -1,4 +1,5 @@
 import { RouteObject } from "react-router-dom";
+import CreateProduct from "../../modules/product/pages/createProduct";
 import CompanyCreation from "../../modules/dashboard/screens/companyCreation";
 import ProductCreation from "../../modules/dashboard/screens/productCreation";
 
