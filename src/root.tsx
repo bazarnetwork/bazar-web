@@ -6,9 +6,9 @@ import useInterceptor from "./shared/config/interceptor";
 const Root = () => {
   useInterceptor();
   return (
-    <React.StrictMode>
-      <RouterProvider router={ createBrowserRouter(rootRoutes) } />
-    </React.StrictMode>
+
+    <RouterProvider router={ createBrowserRouter(rootRoutes) } />
+
   );
 };
 

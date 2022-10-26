@@ -21,9 +21,10 @@
 @import '../../modules/common/components/inputFile/styles/index';
 /* Modal */
 @import '../../modules/common/components/modal/styles/index';
+/* Toggle */
+@import '../../modules/common/components/toggle/styles/index';
 /* Logo */
 @import '../../assets/svg/icons/iconLogo/styles/index';
-
 
 // //////////// modules/AUTH
 // Components
@@ -39,5 +40,9 @@
 
 // //////////// shared/DASHBOARD
 // Layouts
-@import '../../modules/dashboard/layouts/dashboardLayout/styles/index.scss';
-@import '../../modules/dashboard/screens/companyCreation/styles/index.scss';
+@import '../../modules/dashboard/layouts/dashboardLayout/styles/index';
+@import '../../modules/dashboard/screens/companyCreation/styles/index';
+
+// //////////// modules/PRODUCT
+// Pages
+@import "../../modules/product/pages/createProduct/styles/index"
