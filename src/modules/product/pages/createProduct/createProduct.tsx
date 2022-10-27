@@ -1,8 +1,24 @@
+import Button from "../../../common/components/button/button";
+import { EBtnVisibleType } from "../../../common/components/button/interfaces";
+import Checkbox from "../../../common/components/checkbox/checkbox";
+import InputText from "../../../common/components/inputText/inputText";
+import InputTextarea from "../../../common/components/inputTextarea";
 import Toggle from "../../../common/components/toggle";
-import { ICreateProductProps } from "./interfaces";
+import { ELarge } from "../../../common/interfaces";
+import useCreateProduct from "./hooks/useCreateProduct";
 
-const CreateProduct: React.FC<ICreateProductProps> = (props) => {
+const CreateProduct: React.FC<any> = (props) => {
   const { } = props;
+  const {
+    control,
+    register,
+    handleSubmit,
+    onSubmitForm,
+    assignInputName,
+    hasErrorsInput,
+    getMessageErrorInput,
+    hasError,
+  } = useCreateProduct();
 
   return (
     <div className="createProductContainer">
@@ -11,16 +27,18 @@ const CreateProduct: React.FC<ICreateProductProps> = (props) => {
       </div>
       <div className="createProductContainer__content">
         <h2>Let's create your product</h2>
+
         <p>This is where we create a contract with terms and conditions that our network of buyers will see once approved</p>
         <form onSubmit={ () => { } } className="createProductContainer__content__row">
-          <div className="form-row">
-            <div className="form-row__input">
-              <label>Product</label>
-              <input
-                name={ "product" }
-                placeholder={ "Select product" } />
-            </div>
-          </div>
+          <InputText
+            register={ register }
+            name={ assignInputName("product") }
+            label={ "Product" }
+            type={ "text" }
+            hasError={ hasErrorsInput("product") }
+            errorMessage={ getMessageErrorInput("product") }
+            placeholder={ "Select product" }
+            required />
           <div className="form-row">
             <div className="form-row__input">
               <label>Product Type</label>
@@ -35,35 +53,34 @@ const CreateProduct: React.FC<ICreateProductProps> = (props) => {
                 placeholder={ "Select a category" } />
             </div>
           </div>
-          <div className="form-row">
-            <div className="form-row__input">
-              <label>What is your production capacity per year? (kg)</label>
-              <input
-                name={ "productionCapacity" }
-                type={ "number" }
-                placeholder={ "E.g. 1.800" }
-                required />
-            </div>
-          </div>
-          <div className="form-row">
-            <div className="form-row__input">
-              <label>Date in port</label>
-              <input
-                name={ "dateInPort" }
-                type={ "date" }
-                placeholder={ "dd mm, yyyy" }
-                required />
-            </div>
-          </div>
-
+          <InputText
+            register={ register }
+            name={ assignInputName("productionCapacity") }
+            label={ "What is your production capacity per year? (kg)" }
+            type={ "number" }
+            hasError={ hasErrorsInput("productionCapacity") }
+            errorMessage={ getMessageErrorInput("productionCapacity") }
+            placeholder={ "E.g. 1800" }
+            required />
+          <InputText
+            register={ register }
+            name={ assignInputName("dateInPort") }
+            label={ "Date in port" }
+            type={ "date" }
+            hasError={ hasErrorsInput("dateInPort") }
+            errorMessage={ getMessageErrorInput("dateInPort") }
+            required />
           <div className="form-row">
             <div className="form-row__input">
               <label>What sustainability certifications do you have? </label>
             </div>
           </div>
           <div className="form-row">
-            <input name={ "iso140001" } type="checkbox" />
-            <label className="inputTextContainer__label">ISO 140001</label>
+            <Checkbox
+              control={ control }
+              label="ISO 140001"
+              name={ assignInputName("sustainabilityCertifications") }
+            />
             <input name={ "ecoOk" } type="checkbox" />
             <label className="inputTextContainer__label">ECO-OK</label>
           </div>
@@ -105,38 +122,43 @@ const CreateProduct: React.FC<ICreateProductProps> = (props) => {
             <input name={ "other" } type="checkbox" />
             <label className="inputTextContainer__label">Other</label>
           </div>
-          <div className="form-row">
-            <div className="form-row__input">
-              <label>Specify your company's guild or association</label>
-              <input
-                name={ "companyAssociation" }
-                type={ "text" }
-                placeholder={ "Write your associations" } />
-            </div>
-          </div>
+
+          <InputText
+            register={ register }
+            name={ assignInputName("companyAssociation") }
+            label={ "Specify your company's guild or association" }
+            type={ "text" }
+            hasError={ hasErrorsInput("companyAssociation") }
+            errorMessage={ getMessageErrorInput("companyAssociation") }
+            placeholder={ "Write your associations" }
+            required />
+
+          <InputText
+            register={ register }
+            name={ assignInputName("saleCapacity") }
+            label={ "How much do you have available for sale? (kg)" }
+            type={ "number" }
+            hasError={ hasErrorsInput("saleCapacity") }
+            errorMessage={ getMessageErrorInput("saleCapacity") }
+            placeholder={ "E.g. 1.800" }
+            required />
           <div className="form-row">
             <div className="form-row__input">
               <label>How much do you have available for sale? (kg)</label>
               <input
-                name={ "saleCapacity" }
-                type={ "number" }
-                placeholder={ "E.g. 1.800" }
-                required />
-            </div>
-          </div>
-          <div className="form-row">
-            <div className="form-row__input">
-              <label>Minimum order</label>
-              <input
                 name={ "minimumOrder" }
-                placeholder={ "Select option" }
+                type={ "number" }
+                placeholder={ "THIS SHOULD BE A DROPDOWN" }
                 required />
             </div>
             <div className="form-row__input">
-              <label>Expected price per kg (USD)</label>
-              <input
-                name={ "pricePerKg" }
+              <InputText
+                register={ register }
+                name={ assignInputName("pricePerKg") }
+                label={ "Expected price per kg (USD)" }
                 type={ "number" }
+                hasError={ hasErrorsInput("pricePerKg") }
+                errorMessage={ getMessageErrorInput("pricePerKg") }
                 placeholder={ "E.g. 1.800" }
                 required />
             </div>
@@ -164,13 +186,21 @@ const CreateProduct: React.FC<ICreateProductProps> = (props) => {
               label={ "Need assistance with logistics?" }
             />
           </div>
+          <InputTextarea
+            register={ register }
+            name={ assignInputName("additionalDescription") }
+            label={ "Additional description (opt)" }
+            hasError={ hasErrorsInput("additionalDescription") }
+            errorMessage={ getMessageErrorInput("additionalDescription") }
+            placeholder={ "Write description" }
+            rows={ 5 }
+            required />
           <div className="form-row">
             <div className="form-row__input">
-              <label>Additional description (opt)</label>
-              <input
-                name={ "additionalDescription" }
-                type={ "textarea" }
-                placeholder={ "Write description" } />
+              <Button visibleType={ EBtnVisibleType.clear } large={ ELarge.full } type="reset">Cancel</Button>
+            </div>
+            <div className="form-row__input">
+              <Button visibleType={ EBtnVisibleType.solid } large={ ELarge.full } type="reset">Next</Button>
             </div>
           </div>
         </form >
