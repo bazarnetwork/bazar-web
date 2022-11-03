@@ -32,3 +32,29 @@
     }
   }
 }
+
+.coming-soon {
+  background-image: url("../../../../../../public/assets/images/coming-soon.jpg");
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+
+  &_footer {
+    position: absolute;
+    bottom: 5rem;
+    margin: auto;
+    left: 0; 
+    right: 0; 
+    width: 600px;
+    text-align: center;
+
+    &_text {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 1000;
+      margin-bottom: 4rem;
+      letter-spacing: 1px;
+      line-height: 40px;
+    }
+  }
+}

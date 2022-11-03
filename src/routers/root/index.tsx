@@ -16,6 +16,10 @@ export const publicRoutes: RouteObject[] = [
     element: <Authlayout />,
     children: authRoutes,
   },
+  {
+    path: "*",
+    element: <Navigate to="/auth/login" />,
+  },
 ];
 
 export const privateRoutes: RouteObject[] = [
