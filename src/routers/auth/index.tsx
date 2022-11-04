@@ -1,8 +1,5 @@
-import { RouteObject } from "react-router-dom";
+import { RouteObject, Navigate } from "react-router-dom";
 import Login from "../../modules/auth/pages/login";
-import Register from "../../modules/auth/pages/register";
-import Verify from "../../modules/auth/pages/verify";
-
 
 const authRoutes: RouteObject[] = [
   {
@@ -11,11 +8,11 @@ const authRoutes: RouteObject[] = [
   },
   {
     path: "register",
-    element: <Register />,
+    element: <Navigate to="/auth/login" />,
   },
   {
     path: "verify",
-    element: <Verify />
+    element: <Navigate to="/auth/login" />
   },
 ];
 
