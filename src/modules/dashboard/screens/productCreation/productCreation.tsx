@@ -285,4 +285,3 @@ const ProductCreation: React.FC<any> = (props) => {
 };
 
 export default ProductCreation;
-

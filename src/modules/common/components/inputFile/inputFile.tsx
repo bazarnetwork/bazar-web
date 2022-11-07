@@ -7,13 +7,13 @@ import { useState } from 'react';
 import { AiFillFile, AiOutlineClose } from 'react-icons/ai';
 
 const InputFile: React.FC<IInputFilesProps> = (props) => {
-  const { name, register, children, hasError, errorMessage, onChangeFile, label, ...rest } = props;
+  const { name, register, children, hasError, errorMessage, multiple, onChangeFile, label, ...rest } = props;
   const hiddenFileInput = React.useRef<any>();
 
   const [fileObj, setFileObj] = useState<any>(null);
 
   const onChangeInputFile = (event: any) => {
-    const fileObj = event.target.files && event.target.files[0];
+    const fileObj = event.target.files && multiple ? event.target.files : event.target.files[0];
     setFileObj(fileObj);
     onChangeFile(fileObj);
   };
@@ -34,24 +34,31 @@ const InputFile: React.FC<IInputFilesProps> = (props) => {
               accept={ "*" }
               onChange={ onChangeInputFile }
               { ...rest }
+              multiple
             />
             {
-              fileObj ? (
-                <div className="file">
-                  <p className="file__name">{ fileObj.name }</p>
+              multiple ? fileObj.map((file: File) => (
+                <div className="file" >
+                  <p className="file__name">{ file.name }</p>
                   <div onClick={ clearFileObj } className="file__icon">X</div>
                 </div>
-              ) : (
-                <Button
-                  onClick={ () => {
-                    hiddenFileInput?.current && hiddenFileInput.current.click();
-                  } }
-                  large={ ELarge.full }
-                  visibleType={ EBtnVisibleType.outline }>
-                  Add document
-                </Button>
+              )) :
+                fileObj ? (
+                  <div className="file">
+                    <p className="file__name">{ fileObj.name }</p>
+                    <div onClick={ clearFileObj } className="file__icon">X</div>
+                  </div>
+                ) : (
+                  <Button
+                    onClick={ () => {
+                      hiddenFileInput?.current && hiddenFileInput.current.click();
+                    } }
+                    large={ ELarge.full }
+                    visibleType={ EBtnVisibleType.outline }>
+                    Add document
+                  </Button>
 
-              )
+                )
             }
             { hasError && <span className="inputTextContainer__errorMessage">{ errorMessage }</span> }
 
