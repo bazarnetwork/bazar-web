@@ -1,84 +1,3 @@
-// .container {
-//   text-align: center;
-// }
-
-// .toggle-switch {
-//   position: relative;
-//   width: 75px;
-//   display: inline-block;
-//   text-align: left;
-//   top: 8px;
-// }
-
-// .checkbox {
-//   display: none;
-// }
-
-// .label {
-//   display: block;
-//   overflow: hidden;
-//   cursor: pointer;
-//   border: 0 solid #bbb;
-//   border-radius: 20px;
-// }
-
-// .inner {
-//   display: block;
-//   width: 200%;
-//   margin-left: -100%;
-//   transition: margin 0.3s ease-in 0s;
-// }
-
-// .inner:before,
-// .inner:after {
-//   float: left;
-//   width: 50%;
-//   height: 36px;
-//   padding: 0;
-//   line-height: 36px;
-//   color: #fff;
-//   font-weight: bold;
-//   box-sizing: border-box;
-// }
-
-// .inner:before {
-//   content: "YES";
-//   padding-left: 10px;
-//   background-color: #060;
-//   color: #fff;
-// }
-
-// .inner:after {
-//   content: "NO";
-//   padding-right: 10px;
-//   background-color: #bbb;
-//   color: #fff;
-//   text-align: right;
-// }
-
-// .switch {
-//   display: block;
-//   width: 24px;
-//   margin: 5px;
-//   background: #fff;
-//   position: absolute;
-//   top: 0;
-//   bottom: 0;
-//   right: 40px;
-//   border: 0 solid #bbb;
-//   border-radius: 20px;
-//   transition: all 0.3s ease-in 0s;
-// }
-
-// .checkbox:checked+.label .inner {
-//   margin-left: 0;
-// }
-
-// .checkbox:checked+.label .switch {
-//   right: 0px;
-// }
-
-
 .toggle-switch {
   position: relative;
   width: 75px;
@@ -102,6 +21,7 @@
     margin: 0;
   }
 
+
   &-inner {
     display: block;
     width: 200%;
@@ -123,11 +43,11 @@
     }
 
     &:before {
-      content: "Yes";
+      content: "";
       text-transform: uppercase;
       padding-left: 10px;
-      background-color: $primary_300;
-      color: #fff;
+      background-color: $primary_200;
+      color: $white;
     }
   }
 
@@ -142,10 +62,11 @@
   }
 
   &-inner:after {
+    content: "";
     text-transform: uppercase;
     padding-right: 10px;
-    background-color: $primary_50;
-    color: rgb(255, 9, 9);
+    background-color: $neutral_200;
+    color: $white;
     text-align: right;
   }
 
@@ -153,7 +74,7 @@
     display: block;
     width: 24px;
     margin: 5px;
-    background: #fff;
+    background: $white;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -170,6 +91,30 @@
 
     .toggle-switch-switch {
       right: 0px;
+    }
+  }
+
+  &.small-switch {
+    width: 40px;
+    // position: absolute;
+    // right: 0px;
+    // padding: 10px;
+
+
+    .toggle-switch-inner {
+
+      &:after,
+      &:before {
+        content: "";
+        height: 20px;
+        line-height: 20px;
+      }
+    }
+
+    .toggle-switch-switch {
+      width: 16px;
+      right: 20px;
+      margin: 2px;
     }
   }
 }
