@@ -5,7 +5,7 @@ import { companyCreationFormValidator } from '../validators/index';
 import { ICompanyCreationProps, TCompanyCreationKeys } from '../interfaces/index';
 import { useForm } from 'react-hook-form';
 import useAuthenticator from '../../../../auth/hooks/useAuthenticator';
-import { capitalizeFirstLetter } from '../../../../common/helpers';
+import { capitalizeFirstLetter, getLocalStorageItem } from '../../../../common/helpers';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -175,6 +175,7 @@ const useCompanyCreation = () => {
       }
       const resp = await axios.post(`${ process.env.REACT_APP_BAZAR_URL }/companies`, formData, {
         headers: {
+          Authorization: `Bearer ${ getLocalStorageItem('accessToken') }`
         }
       });
       console.log(JSON.stringify(resp, null, 3));

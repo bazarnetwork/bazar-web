@@ -5,6 +5,7 @@ import useProductCreationProviders from "../providers";
 import { IProductCreationProps, TProductCreationFormKeys } from "../interfaces";
 import { productCreationFormValidator } from "../validators";
 import axios from "axios";
+import { getLocalStorageItem } from "../../../../common/helpers";
 
 const useCreateProduct = () => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -88,7 +89,9 @@ const useCreateProduct = () => {
           formData.append("images[]", productPictures);
         // });
         const resp = await axios.post(`${ process.env.REACT_APP_BAZAR_URL }/products`, formData, {
-          headers: {}
+          headers: {
+            Authorization: `Bearer ${ getLocalStorageItem('accessToken') }`
+          }
         });
         console.log(JSON.stringify(resp, null, 3));
         alert("Product created successfully!");
