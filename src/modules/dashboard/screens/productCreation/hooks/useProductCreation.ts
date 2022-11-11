@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import useProductCreationProviders, { token } from "../providers";
+import useProductCreationProviders from "../providers";
 import { IProductCreationProps, TProductCreationFormKeys } from "../interfaces";
 import { productCreationFormValidator } from "../validators";
 import axios from "axios";

@@ -1,12 +1,16 @@
 import axios from "axios";
 import { trackPromise } from "react-promise-tracker";
+import { getLocalStorageItem } from "../helpers";
 
 const useCommonProviders = () => {
   const getCountries = () => {
     const request = axios({
       method: "GET",
       baseURL: process.env.REACT_APP_BAZAR_AUTH_URL,
-      url: "/country"
+      url: "/country",
+      headers: {
+        Authorization: `Bearer ${ getLocalStorageItem('accessToken') }`
+      },
     });
     return trackPromise(request);
   };
@@ -15,7 +19,10 @@ const useCommonProviders = () => {
     const request = axios({
       method: "GET",
       baseURL: process.env.REACT_APP_BAZAR_AUTH_URL,
-      url: `/city/${ countryId }`
+      url: `/city/${ countryId }`,
+      headers: {
+        Authorization: `Bearer ${ getLocalStorageItem('accessToken') }`
+      },
     });
     return trackPromise(request);
   };
@@ -25,6 +32,9 @@ const useCommonProviders = () => {
       method: "GET",
       baseURL: process.env.REACT_APP_BAZAR_URL,
       url: "/avatars",
+      headers: {
+        Authorization: `Bearer ${ getLocalStorageItem('accessToken') }`
+      },
     });
     return trackPromise(request);
   };

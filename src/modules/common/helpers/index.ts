@@ -1,6 +1,6 @@
 import axios from 'axios';
 export const setDefaultAuthorizationToken = (token?: string) => {
-  axios.defaults.headers.common.Authorization =  `Bearer ${token}`;
+  axios.defaults.headers.common.Authorization = `Bearer ${ token }`;
 };
 
 export const setLocalStorageItem = (key: string, value: string) => {
@@ -17,7 +17,7 @@ export const getLocalStorageItem = (key: string) => {
 
 export const getRolesToStorage = (roles: any) => {
   return JSON.stringify(
-    roles.map((role:any) => role.name)
+    roles.map((role: any) => role.name)
   );
 };
 
