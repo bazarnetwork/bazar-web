@@ -34,10 +34,10 @@ const InputFile: React.FC<IInputFilesProps> = (props) => {
               accept={ "*" }
               onChange={ onChangeInputFile }
               { ...rest }
-              multiple
+              multiple={ multiple }
             />
             {
-              multiple ? fileObj.map((file: File) => (
+              multiple ? Array.from(fileObj).map((file: any) => (
                 <div className="file" >
                   <p className="file__name">{ file.name }</p>
                   <div onClick={ clearFileObj } className="file__icon">X</div>
@@ -64,7 +64,6 @@ const InputFile: React.FC<IInputFilesProps> = (props) => {
 
           </>
         ) : (
-
           <>
             <input
               name={ name }
@@ -74,30 +73,42 @@ const InputFile: React.FC<IInputFilesProps> = (props) => {
               accept={ "*" }
               onChange={ onChangeInputFile }
               className="dNone"
+              multiple={ multiple }
               { ...rest }
             />
             {
-              fileObj ? (
-                <div className="file">
-                  <div className="file__name">
-                    <AiFillFile />
-                    <p className="file__name--text textNeutral300 smallText">{ fileObj.name }</p>
+              fileObj ?
+                multiple ? Array.from(fileObj).map((file: any) => (
+                  <div className="file">
+                    <div className="file__name">
+                      <AiFillFile />
+                      <p className="file__name--text textNeutral300 smallText">{ file.name }</p>
+                    </div>
+                    <div onClick={ clearFileObj } className="file__icon">
+                      <AiOutlineClose />
+                    </div>
                   </div>
-                  <div onClick={ clearFileObj } className="file__icon">
-                    <AiOutlineClose />
+                )) : (
+                  <div className="file">
+                    <div className="file__name">
+                      <AiFillFile />
+                      <p className="file__name--text textNeutral300 smallText">{ fileObj.name }</p>
+                    </div>
+                    <div onClick={ clearFileObj } className="file__icon">
+                      <AiOutlineClose />
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <Button
-                  onClick={ () => {
-                    hiddenFileInput?.current && hiddenFileInput.current.click();
-                  } }
-                  large={ ELarge.full }
-                  visibleType={ EBtnVisibleType.outline }>
-                  Add document
-                </Button>
+                ) : (
+                  <Button
+                    onClick={ () => {
+                      hiddenFileInput?.current && hiddenFileInput.current.click();
+                    } }
+                    large={ ELarge.full }
+                    visibleType={ EBtnVisibleType.outline }>
+                    Add document
+                  </Button>
 
-              )
+                )
             }
             { hasError && <span className="inputTextContainer__errorMessage">{ errorMessage }</span> }
           </>
