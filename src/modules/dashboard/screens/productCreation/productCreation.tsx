@@ -90,9 +90,9 @@ const ProductCreation: React.FC<any> = () => {
     <Container className="product-cc">
       <Row>
         <Col md={ 4 } className='product-block_left'>
-          <img className="img-left" src="/assets/images/banner-product-creation.png" alt="bazar Auth" />
+          <img src="/assets/images/banner-product-creation.png" alt="bazar Auth" />
         </Col>
-        <Col me={ 8 } className='product-block_right'>
+        <Col md={ 8 } className='product-block_right'>
           <div className="cc__content">
             <div className="cc__content--form">
               <Row>

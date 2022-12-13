@@ -1,16 +1,19 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { Container, Row, Col } from 'react-bootstrap';
 
 const Authlayout: React.FC<any> = () => {
   return (
-    <div className="layoutContainer">
-      <section className="layoutContainer__content">
-        <Outlet />
-      </section>
-      <div className="layoutContainer__bg">
-        <img src="/assets/images/bg-login.png" alt="bazar Auth" />
-      </div>
-    </div>
+    <Container fluid className="layoutContainer">
+      <Row>
+        <Col className="section-left">
+          <Outlet />
+        </Col>
+        <Col classname="section-right">
+          <img src="/assets/images/bg-login.png" alt="bazar Auth" />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

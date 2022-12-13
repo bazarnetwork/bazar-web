@@ -8,7 +8,7 @@ const AuthlayoutContent: React.FC<IAuthLayoutContentProps> = (props) => {
   return (
     <div className="layoutContainerContent">
       <div className="layoutContainerContent__logo">
-        <IconLogo/>
+        <IconLogo />
       </div>
       <HeroAuth
         title={ title }
